@@ -1,0 +1,20 @@
+.heading{
+    color: green;
+}
+.imgStyle{
+    width: 220px;
+    height: 200px;
+}
+.userCart{
+    margin: 10px;
+    width: 220px;
+    border: 1px solid #ddd;
+    box-shadow: 1px 1px 3px 1px #ddd;
+}
+.textWrap{
+    padding: 10px;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+}

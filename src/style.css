@@ -1,0 +1,32 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    background-color: #d6c0c0;
+    padding: 10px;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.header ul{
+    display: flex;
+    list-style: none;
+    width: 300px;
+    margin: auto;
+    justify-content: space-around;
+}
+.header ul li{
+    padding: 10px;
+}
+.header .link h2{
+    margin: 0;
+}
+.header .link{
+    text-decoration: none;
+    font-size: 20px;
+} 
+.college .link{
+    text-decoration: none;
+    font-size: 20px;
+    margin: 10px;    
+}
