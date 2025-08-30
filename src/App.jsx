@@ -9,21 +9,19 @@ import College from "./College";
 import Student from "./Student";
 import Department from "./Department";
 import CollegeDeatails from "./CollegeDeatails";
+import UserList from "./UserList";
+import UserDetails from "./UserDetails";
 
-function DashboardLayout() {
-  return (
-    <div>
-      <h1>Dashboard</h1>
-      <Outlet />
-    </div>
-  );
-}
 const App = () => {
   return (
     <div>
       <Routes>
         <Route path="/" element={<Navbar />}>
             <Route path="/" element={<Home />} />
+            <Route path="/users" element={<UserList/>}/>
+            <Route path="/users/:id" element={<UserDetails/>}/>
+            
+            
             <Route path="pk">
             <Route path="/pk/user">
                 <Route path="/pk/user/login" element={<Login />} />
