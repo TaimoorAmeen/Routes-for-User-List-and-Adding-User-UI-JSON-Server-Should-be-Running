@@ -11,6 +11,7 @@ import Department from "./Department";
 import CollegeDeatails from "./CollegeDeatails";
 import UserList from "./UserList";
 import UserDetails from "./UserDetails";
+import List from "./List";
 
 const App = () => {
   return (
@@ -18,10 +19,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Navbar />}>
             <Route path="/" element={<Home />} />
-            <Route path="/users" element={<UserList/>}/>
-            <Route path="/users/:id" element={<UserDetails/>}/>
-            
-            
+            <Route path="/users/list?" element={<UserList/>}/>
+            <Route path="/users/:id/:name?" element={<UserDetails/>}/>
             <Route path="pk">
             <Route path="/pk/user">
                 <Route path="/pk/user/login" element={<Login />} />
