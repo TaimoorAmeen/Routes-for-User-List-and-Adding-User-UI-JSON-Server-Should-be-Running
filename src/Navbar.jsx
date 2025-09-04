@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Link, Outlet } from 'react-router'
+import { Link, NavLink, Outlet } from 'react-router'
 import "./style.css";
 const Navbar = () => {
   return (
@@ -11,22 +11,23 @@ const Navbar = () => {
         <div>
           <ul>
               <li>
-                <Link className="link" to='/'>Home</Link>
+                {/* Actice class is added automatically in NavLink this is very helpful for styling */}
+                <NavLink className={({isActive}) => isActive? 'custom-active':'link'} to='/'>Home</NavLink>
               </li>
               <li>
-                <Link className="link" to='pk/user/login'>Login</Link>
+                <NavLink className={({isActive}) => isActive? 'custom-active':'link'} to='pk/user/login'>Login</NavLink>
               </li>
               <li>
-                <Link className="link" to='pk/user/about'>About</Link>
+                <NavLink className="link" to='pk/user/about'>About</NavLink>
               </li>
               <li>
-                <Link className="link" to='/college'>College</Link>
+                <NavLink className="link" to='/college'>College</NavLink>
               </li>
               <li>
-                <Link className="link" to="/users">Users</Link>
+                <NavLink className="link" to="/users">Users</NavLink>
               </li>
               <li>
-                <Link className="link" to="/users/list?">List</Link>
+                <NavLink className="link" to="/users/list?">List</NavLink>
               </li>
           </ul>
           
