@@ -1,41 +1,43 @@
-import React from "react";
-import { Link, Navigate, Outlet, Route, Routes } from "react-router";
-import Home from "./Home";
-import About from "./About";
-import Login from "./Login";
-import Navbar from "./Navbar";
-import PageNotFound from "./PageNotFound";
-import College from "./College";
-import Student from "./Student";
-import Department from "./Department";
-import CollegeDeatails from "./CollegeDeatails";
-import UserList from "./UserList";
-import UserDetails from "./UserDetails";
-import List from "./List";
-
+import { useEffect, useState } from "react";
+import "./App.css";
 const App = () => {
+  
+  const[userData, setUserData] = useState([]);
+  const[loading, setLoading] = useState(false);
+
+  useEffect(()=>{
+    setLoading(true);
+    getUserData();
+  },[]);
+
+  const getUserData = async() => {
+      const url = "http://localhost:3000/users";
+      let response = await fetch(url);
+      response = await response.json();
+      console.log(response);
+      setUserData(response);
+      setLoading(false);
+  }
+
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<Navbar />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/users/list?" element={<UserList/>}/>
-            <Route path="/users/:id/:name?" element={<UserDetails/>}/>
-            <Route path="pk">
-            <Route path="/pk/user">
-                <Route path="/pk/user/login" element={<Login />} />
-                <Route path="/pk/user/about" element={<About />} />
-            </Route>
-            </Route>
-        </Route>
-
-        <Route path="/college" element={<College />}>
-          <Route index element={<Student />}></Route>
-          <Route path="department" element={<Department />}></Route>
-          <Route path="details" element={<CollegeDeatails />}></Route>
-        </Route>
-        <Route path="/*" element={<PageNotFound />} />
-      </Routes>
+        <h1>Integrate JSON Server API and Loader</h1>
+        <ul className="user-list user-list-head">
+          <li>Name</li>
+          <li>Age</li>
+          <li>Email</li>
+        </ul>
+        {
+          !loading ?
+          userData.map((item,index) => (
+            <ul key={index} className="user-list">
+                <li>{item.name}</li>
+                <li>{item.age}</li>
+                <li>{item.email}</li>
+            </ul>
+          ))
+          : <h1>Data Loading....</h1>
+        }
     </div>
   );
 };
