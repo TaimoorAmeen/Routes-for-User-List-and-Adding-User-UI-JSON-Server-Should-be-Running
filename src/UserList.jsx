@@ -1,34 +1,45 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React from 'react';
+import { Link } from 'react-router';
+import { useEffect, useState } from "react";
 const UserList = () => {
-  const userData = [
-    {id:1,name:"Taimoor Ameen"},
-    {id:2,name:"Dawood Ameen"},
-    {id:3,name:"Ahmad Ameen"},
-    {id:4,name:"Bruce"},
-    {id:5,name:"Peter"},
-    {id:6,name:"Tony"}
-  ]
+  const[userData, setUserData] = useState([]);
+  const[loading, setLoading] = useState(false);
+
+  useEffect(()=>{
+    setLoading(true);
+    getUserData();
+  },[]);
+
+  const getUserData = async() => {
+      const url = "http://localhost:3000/users";
+      let response = await fetch(url);
+      response = await response.json();
+      console.log(response);
+      setUserData(response);
+      setLoading(false);
+  }
+
   return (
     <div>
-        <h1>User List Page</h1>
+
+        <ul className="user-list user-list-head">
+          <li>Name</li>
+          <li>Age</li>
+          <li>Email</li>
+        </ul>
         {
-            userData.map((item) => (
-                <div key={item.id} style={{margin:"20px"}}>
-                    <h4><Link to={"/users/"+item.id}>{item.name}</Link></h4>
-                </div>
-            ))
-        }
-        <h1>User List Page with Name in URL</h1>
-        {
-          userData.map((item) => (
-                <div key={item.id} style={{margin:"20px"}}>
-                    <h4><Link to={"/users/"+item.id+"/"+item.name}>{item.name}</Link></h4>
-                </div>
+          !loading ?
+          userData.map((item,index) => (
+            <ul key={index} className="user-list">
+                <li>{item.name}</li>
+                <li>{item.age}</li>
+                <li>{item.email}</li>
+            </ul>
           ))
+          : <h1>Data Loading....</h1>
         }
     </div>
-  )
+  );  
 }
 
 export default UserList;
